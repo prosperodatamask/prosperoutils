@@ -1,0 +1,43 @@
+{
+  "name": "prosperoutils",
+  "version": "0.1.0",
+  "description": "Utility methods for masking data within prospero",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/prosperodatamask/prosperoutils.git"
+  },
+  "keywords": [
+    "prospero",
+    "datamask"
+  ],
+  "author": "Patrick Connelly (patrick@connelly.dev)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/prosperodatamask/prosperoutils/issues"
+  },
+  "homepage": "https://github.com/prosperodatamask/prosperoutils#readme",
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended",
+      [
+        "remark-lint-final-newline",
+        false
+      ],
+      [
+        "lint-list-item-indent",
+        "space"
+      ]
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "remark": "^12.0.1",
+    "remark-cli": "^8.0.1",
+    "remark-lint": "^7.0.1",
+    "remark-preset-lint-recommended": "^4.0.1"
+  }
+}
