@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# example code
+src/modules/ysac.js
+
 # testing
 /coverage
 

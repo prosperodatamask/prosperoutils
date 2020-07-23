@@ -1,10 +1,13 @@
 {
-  "name": "prosperoutils",
+  "name": "prospero",
   "version": "0.1.0",
   "description": "Utility methods for masking data within prospero",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-js": "eslint .",
+    "lint-md": "remark --no-stdout --silently-ignore **/*.md",
+    "lint": "npm run lint-js && npm run lint-md"
   },
   "repository": {
     "type": "git",
@@ -34,10 +37,14 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.5.0",
     "remark": "^12.0.1",
     "remark-cli": "^8.0.1",
     "remark-lint": "^7.0.1",
     "remark-preset-lint-recommended": "^4.0.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.19"
   }
 }
