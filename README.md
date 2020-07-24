@@ -20,9 +20,29 @@ const instance = new prospero.modules['replace'].Transformer(replace_opts);
 instance.transform('My data goes here'); // returns 'XXXXXXXXXXX'
 ```
 
+Require module directly
+
+```javascript
+const replace = require('prospero/replace');
+
+const replace_opts = {
+  replacement: 'XXXXXXXXXXX'
+};
+const instance = new replace.Transformer(replace_opts);
+instance.transform('My data goes here'); // returns 'XXXXXXXXXXX'
+```
+
+Require module via destructuring
+
+```javascript
+const {
+  replace
+} = require('prospero');
+```
+
 ## Adding new modules
 
-Create a new module file under `src/modules` that extends the `Transformer` class provided by the `module/index.js` file.  Then pass in your module's name and it's configuration and options (if valid) to the super constructor.  The implement your `transform` method.  Each module must export the following properties
+Create a new module file under the root that extends the `Transformer` class provided by the `utils` module.  Then pass in your module's name and it's configuration and options (if valid) to the super constructor.  The implement your `transform` method.  Each module must export the following properties
 
 * _name_ - The name of the module
 * _description_ - A brief description of what the module does
@@ -31,8 +51,8 @@ Create a new module file under `src/modules` that extends the `Transformer` clas
 ### Example
 
 ```javascript
-const Transformer = require('./index').Transformer;
-const TransformerOption = require('./index').TransformerOption;
+const Transformer = require('./utils').Transformer;
+const TransformerOption = require('./utils').TransformerOption;
 
 const NAME = 'ysac';
 const DESCRIPTION = 'Replaces the data with a given number of peppers';

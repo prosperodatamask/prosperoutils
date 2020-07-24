@@ -1,4 +1,4 @@
-const Transformer = require('./index').Transformer;
+const Transformer = require('./utils').Transformer;
 
 const NAME = 'copy';
 const DESCRIPTION = 'Copies the contents of the data verbatim';

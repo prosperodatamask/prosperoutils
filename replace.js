@@ -1,5 +1,5 @@
-const Transformer = require('./index').Transformer;
-const TransformerOption = require('./index').TransformerOption;
+const Transformer = require('./utils').Transformer;
+const TransformerOption = require('./utils').TransformerOption;
 
 const NAME = 'replace';
 const DESCRIPTION = 'Replaces the entire entry with a the provided replacement text';

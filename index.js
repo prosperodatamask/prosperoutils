@@ -1,5 +1,5 @@
-const copy = require('./modules/copy');
-const replace = require('./modules/replace');
+const copy = require('./copy');
+const replace = require('./replace');
 
 const modules = {
   [copy.name]: copy,
@@ -21,6 +21,8 @@ function listModules() {
 }
 
 module.exports = {
+  copy: copy,
   listModules: listModules,
-  modules: modules
+  modules: modules,
+  replace: replace
 };

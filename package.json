@@ -2,7 +2,7 @@
   "name": "prospero",
   "version": "0.1.0",
   "description": "Utility methods for masking data within prospero",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint-js": "eslint .",
