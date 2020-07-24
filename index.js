@@ -1,3 +1,6 @@
+const merge = require('lodash/extend');
+const forEach = require('lodash/forEach');
+
 const copy = require('./copy');
 const replace = require('./replace');
 
@@ -13,16 +16,13 @@ const modules = {
 function listModules() {
   const list = {};
 
-  modules.forEach(m => {
+  forEach(modules, function (m) {
     list[m.name] = m.description;
   });
 
   return list;
 }
 
-module.exports = {
-  copy: copy,
-  listModules: listModules,
-  modules: modules,
-  replace: replace
-};
+module.exports = merge({
+  listModules: listModules
+}, modules);

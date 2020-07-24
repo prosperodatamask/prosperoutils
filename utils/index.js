@@ -5,9 +5,9 @@ const has = require('lodash/has');
  * Options for the transformer
  */
 class TransformerOption {
-  #name;
-  #description;
-  #opt_type;
+  name;
+  description;
+  type;
   value;
 
   /**
@@ -18,34 +18,13 @@ class TransformerOption {
    * @param {Object} default_value The default value
    */
   constructor(name, description, opt_type, default_value) {
-    this.#name = name;
-    this.#description = description;
-    this.#opt_type = opt_type;
+    this.name = name;
+    this.description = description;
+    this.type = opt_type;
 
     if (default_value) {
       this.value = default_value;
     }
-  }
-
-  /**
-   * Gets the name of transformer
-   */
-  get name() {
-    return this.#name;
-  }
-
-  /**
-   * Gets the description
-   */
-  get description() {
-    return this.#description;
-  }
-
-  /**
-   * Gets the type
-   */
-  get type() {
-    return this.#opt_type;
   }
 }
 
