@@ -1,5 +1,9 @@
 # Prospero Utilities
 
+![Checks](https://github.com/prosperodatamask/prosperoutils/workflows/Checks/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/prosperodatamask/prosperoutils/badge.svg?branch=master)](https://coveralls.io/github/prosperodatamask/prosperoutils?branch=master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ec2a64e88fdb9044ef2a/maintainability)](https://codeclimate.com/github/prosperodatamask/prosperoutils/maintainability)
+
 This package is a set of utility methods to help with [Prosper UI](https://github.com/prosperodatamask/prosperoui) and [Prospero CLI](https://github.com/prosperodatamask/prosperocli) to mask data from files.
 
 ## Usage
