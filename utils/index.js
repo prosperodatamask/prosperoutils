@@ -14,13 +14,13 @@ class TransformerOption {
    * The constructor
    * @param {String} name The name of the option
    * @param {String} description A description for the option
-   * @param {String} opt_type The type of the option
+   * @param {String} type The type of the option
    * @param {Object} default_value The default value
    */
-  constructor(name, description, opt_type, default_value) {
+  constructor(name, description, type, default_value) {
     this.name = name;
     this.description = description;
-    this.type = opt_type;
+    this.type = type;
 
     if (default_value) {
       this.value = default_value;
