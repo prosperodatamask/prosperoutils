@@ -11,24 +11,24 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install
-      run: npm ci
-      env:
-        CI: true
-    - name: Lint
-      run: npm run lint
-      env:
-        CI: true
-    - name: Test
-      run: npm test
-      env:
-        CI: true
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm ci
+        env:
+          CI: true
+      - name: Lint
+        run: npm run lint
+        env:
+          CI: true
+      - name: Test
+        run: npm test
+        env:
+          CI: true
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
