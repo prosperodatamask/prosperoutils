@@ -25,10 +25,9 @@ jobs:
         env:
           CI: true
       - name: Test
-        run: npm test
+        uses: paambaati/codeclimate-action@v2.6.0
         env:
-          CI: true
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coverageCommand: npm run test
+          coverageLocations: ${{github.workspace}}/coverage/lcov.info:lcov
