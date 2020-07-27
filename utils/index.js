@@ -1,5 +1,6 @@
 const cloneDeep = require('lodash/cloneDeep');
 const has = require('lodash/has');
+const forEach = require('lodash/forEach');
 
 /**
  * Options for the transformer
@@ -77,6 +78,20 @@ class Transformer {
    */
   get config() {
     return this.#config;
+  }
+
+  /**
+   * Dumps the config in a key / value map
+   * @returns {Object} The configuration values
+   */
+  dumpConfig() {
+    const conf = {};
+
+    forEach(this.#config, (option, key) => {
+      conf[key] = option.value;
+    });
+
+    return conf;
   }
 
   /**

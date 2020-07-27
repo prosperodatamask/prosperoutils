@@ -138,4 +138,33 @@ describe('Transformer', () => {
     expect(transformer.config).toEqual(expected_config);
     expect(transformer.transform()).toBeUndefined();
   });
+
+  describe('Dump Config', () => {
+    test('No Config', () => {
+      /**
+       * Transformer for the test
+       */
+      class TestTransformer extends utils.Transformer {}
+
+      const instance = new TestTransformer('TEST');
+      expect(instance.dumpConfig()).toEqual({});
+    });
+
+    test('Has Config', () => {
+      /**
+       * Transformer for the test
+       */
+      class TestTransformer extends utils.Transformer {}
+      const config = [
+        new utils.TransformerOption('test', undefined, undefined, 'integer', 30)
+      ];
+
+      const expected_results = {
+        test: 30
+      };
+
+      const instance = new TestTransformer('TEST', config);
+      expect(instance.dumpConfig()).toEqual(expected_results);
+    });
+  });
 });
