@@ -6,6 +6,7 @@ const has = require('lodash/has');
  */
 class TransformerOption {
   name;
+  display_name;
   description;
   type;
   value;
@@ -13,12 +14,14 @@ class TransformerOption {
   /**
    * The constructor
    * @param {String} name The name of the option
+   * @param {String} display_name The human readable name to display
    * @param {String} description A description for the option
    * @param {String} type The type of the option
    * @param {Object} default_value The default value
    */
-  constructor(name, description, type, default_value) {
+  constructor(name, display_name, description, type, default_value) {
     this.name = name;
+    this.display_name = display_name;
     this.description = description;
     this.type = type;
 

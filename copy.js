@@ -1,6 +1,7 @@
 const Transformer = require('./utils').Transformer;
 
 const NAME = 'copy';
+const DISPLAY_NAME = 'Copy';
 const DESCRIPTION = 'Copies the contents of the data verbatim';
 
 /**
@@ -26,6 +27,7 @@ class Copy extends Transformer {
 
 module.exports = {
   name: NAME,
+  display_name: DISPLAY_NAME,
   description: DESCRIPTION,
   Transformer: Copy
 };

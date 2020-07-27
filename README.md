@@ -59,11 +59,13 @@ const Transformer = require('./utils').Transformer;
 const TransformerOption = require('./utils').TransformerOption;
 
 const NAME = 'ysac';
+const DISPLAY_NAME = 'You Suck at Cooking';
 const DESCRIPTION = 'Replaces the data with a given number of peppers';
 
 const options = [
   {
     name: 'count',
+    display_name: 'Pepper Count',
     description: 'The number of peppers to return',
     type: 'number',
     default: 3
@@ -75,6 +77,7 @@ const config = [];
 options.forEach(option => {
   config.push(new TransformerOption(
     option.name,
+    option.display_name,
     option.description,
     option.type,
     option.default
@@ -112,6 +115,7 @@ class YSAC extends Transformer {
 
 module.exports = {
   name: NAME,
+  display_name: DISPLAY_NAME,
   description: DESCRIPTION,
   Transfomer: YSAC
 };
