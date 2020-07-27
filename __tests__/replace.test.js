@@ -7,6 +7,10 @@ describe('Module information', () => {
     expect(replace.name).toEqual('replace');
   });
 
+  test('Display Name', () => {
+    expect(replace.display_name).toEqual('Replacer');
+  });
+
   test('Description', () => {
     expect(replace.description).toEqual('Replaces the entire entry with a the provided replacement text');
   });
@@ -32,6 +36,7 @@ describe('Transformer', () => {
       expect(config_keys).toEqual(expected);
 
       expect(config.replacement.name).toEqual('replacement');
+      expect(config.replacement.display_name).toEqual('Replacement Text');
       expect(config.replacement.description).toEqual('The replacement text');
       expect(config.replacement.type).toEqual('string');
       expect(config.replacement.value).toEqual('REDACTED');

@@ -5,6 +5,10 @@ describe('Module information', () => {
     expect(copy.name).toEqual('copy');
   });
 
+  test('Display Name', () => {
+    expect(copy.display_name).toEqual('Copy');
+  });
+
   test('Description', () => {
     expect(copy.description).toEqual('Copies the contents of the data verbatim');
   });
