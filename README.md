@@ -44,6 +44,49 @@ const {
 } = require('prospero');
 ```
 
+## Modules
+
+### Copy
+
+The `copy` module takes the data passed into the `transform` function and returns the data passed in.
+
+#### Copy Options
+
+None
+
+#### Copy Examples
+
+```javascript
+const instance = new require('prospero/copy').Transformer();
+
+expect(instance.transform('Input Text')).toEqual('Input Text');
+```
+
+### Replace
+
+The `replace` module takes the data passed into the `transform` function and replaces it with data from options.
+
+#### Replace Options
+
+| Name | Type | Description | Default |
+|:----:|------|-------------|:-------:|
+| replacement | string | The replacement text | REDACTED |
+| matchlength | boolean | If the replacement should match the length of the input data | false |
+
+#### Replace Examples
+
+```javascript
+const instance_nomatch = new require('prospero/replace').Transformer();
+
+const opts = {
+  matchlength: true
+};
+const instance_match = new require('prospero/replace').Transformer(opts);
+
+expect(instance_nomatch.transform('Input Text')).toEqual('REDACTED');
+expect(instance_match.transform('Input Text')).toEqual('REDACTEDRE');
+```
+
 ## Adding new modules
 
 Create a new module file under the root that extends the `Transformer` class provided by the `utils` module.  Then pass in your module's name and it's configuration and options (if valid) to the super constructor.  The implement your `transform` method.  Each module must export the following properties

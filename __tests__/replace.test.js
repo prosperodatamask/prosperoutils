@@ -30,6 +30,7 @@ describe('Transformer', () => {
 
       const config_keys = keys(config).sort();
       const expected = [
+        'matchlength',
         'replacement'
       ];
 
@@ -40,6 +41,12 @@ describe('Transformer', () => {
       expect(config.replacement.description).toEqual('The replacement text');
       expect(config.replacement.type).toEqual('string');
       expect(config.replacement.value).toEqual('REDACTED');
+
+      expect(config.matchlength.name).toEqual('matchlength');
+      expect(config.matchlength.display_name).toEqual('Match Length');
+      expect(config.matchlength.description).toEqual('Match the length of the input data');
+      expect(config.matchlength.type).toEqual('boolean');
+      expect(config.matchlength.default).toBeFalsy();
     });
 
     test('Override', () => {
@@ -70,6 +77,17 @@ describe('Transformer', () => {
       const data = 'This is sample data';
 
       expect(instance.transform(data)).toEqual('REPLACEMENT');
+    });
+
+    test('Match Length', () => {
+      const opts = {
+        matchlength: true
+      };
+      const instance = new replace.Transformer(opts);
+      const data = 'This is sample data';
+      const expected = 'REDACTEDREDACTEDRED';
+
+      expect(instance.transform(data)).toEqual(expected);
     });
   });
 });

@@ -12,6 +12,13 @@ const options = [
     description: 'The replacement text',
     type: 'string',
     default: 'REDACTED'
+  },
+  {
+    name: 'matchlength',
+    display_name: 'Match Length',
+    description: 'Match the length of the input data',
+    type: 'boolean',
+    default: false
   }
 ];
 
@@ -41,10 +48,21 @@ class Replace extends Transformer {
 
   /**
    * Transforms the data
+   * @param {String} data The data to transform
    * @returns {String} The transformed data
    */
-  transform() {
-    return this.config.replacement.value;
+  transform(data) {
+    let result = this.config.replacement.value;
+
+    if (this.config.matchlength.value) {
+      while (result.length < data.length) {
+        result += this.config.replacement.value;
+      }
+
+      result = result.substring(0, data.length);
+    }
+
+    return result;
   }
 }
 
