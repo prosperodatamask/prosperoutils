@@ -39,6 +39,23 @@ const options = [
 ];
 
 /**
+ * Appends the mask value to the end of the string
+ * @param {String} data The starting data
+ * @param {Number} length The length to end with
+ * @param {String} mask The masking data
+ * @returns {String} The appended data
+ */
+function appendMaskValue(data, length, mask) {
+  let result = data;
+
+  while (result.length < length) {
+    result += mask;
+  }
+
+  return result.substring(0, length);
+}
+
+/**
  * Modifies Salesforce Ids
  */
 class SalesforceId extends Transformer {
@@ -56,19 +73,11 @@ class SalesforceId extends Transformer {
    * @returns {String} The transformed data
    */
   transform(data) {
-    let mask_length = this.config.masklength.value;
+    let mask_length = this.config.masklength.value > ID_LENGTH ? ID_LENGTH : this.config.masklength.value;
     let result = data;
 
-    if (mask_length > ID_LENGTH) {
-      mask_length = ID_LENGTH;
-    }
-
     if (this.config.normalizelength.value) {
-      while (result.length < ID_LENGTH) {
-        result += this.config.mask.value;
-      }
-
-      result = result.substring(0, ID_LENGTH);
+      result = appendMaskValue(result, ID_LENGTH, this.config.mask.value);
     }
 
     if (
@@ -82,12 +91,7 @@ class SalesforceId extends Transformer {
     result = result.substring(0, result.length - mask_length);
 
     const final_length = this.config.normalizelength.value ? ID_LENGTH : data.length;
-
-    while (result.length < final_length) {
-      result += this.config.mask.value;
-    }
-
-    return result.substring(0, ID_LENGTH);
+    return appendMaskValue(result, final_length, this.config.mask.value);
   }
 }
 
