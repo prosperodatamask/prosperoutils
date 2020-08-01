@@ -155,15 +155,19 @@ describe('Transformer', () => {
        * Transformer for the test
        */
       class TestTransformer extends utils.Transformer {}
-      const config = [
-        new utils.TransformerOption('test', undefined, undefined, 'integer', 30)
+      const options = [
+        {
+          name: 'test',
+          type: 'integer',
+          default: 30
+        }
       ];
 
       const expected_results = {
         test: 30
       };
 
-      const instance = new TestTransformer('TEST', config);
+      const instance = new TestTransformer('TEST', options);
       expect(instance.dumpConfig()).toEqual(expected_results);
     });
   });

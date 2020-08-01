@@ -1,5 +1,4 @@
 const Transformer = require('../utils').Transformer;
-const TransformerOption = require('../utils').TransformerOption;
 
 const NAME = 'salesforceid';
 const DISPLAY_NAME = 'Salesforce Id';
@@ -39,18 +38,6 @@ const options = [
   }
 ];
 
-const config = [];
-
-options.forEach(option => {
-  config.push(new TransformerOption(
-    option.name,
-    option.display_name,
-    option.description,
-    option.type,
-    option.default
-  ));
-});
-
 /**
  * Modifies Salesforce Ids
  */
@@ -60,7 +47,7 @@ class SalesforceId extends Transformer {
    * @param {Object} opts The module options
    */
   constructor(opts) {
-    super(NAME, config, opts);
+    super(NAME, options, opts);
   }
 
   /**

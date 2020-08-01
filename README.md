@@ -127,7 +127,6 @@ Create a new module file under the root that extends the `Transformer` class pro
 
 ```javascript
 const Transformer = require('./utils').Transformer;
-const TransformerOption = require('./utils').TransformerOption;
 
 const NAME = 'ysac';
 const DISPLAY_NAME = 'You Suck at Cooking';
@@ -143,18 +142,6 @@ const options = [
   }
 ];
 
-const config = [];
-
-options.forEach(option => {
-  config.push(new TransformerOption(
-    option.name,
-    option.display_name,
-    option.description,
-    option.type,
-    option.default
-  ));
-});
-
 /**
  * The You Suck at Cooking transformer
  */
@@ -164,7 +151,7 @@ class YSAC extends Transformer {
    * @param {Object} opts The options
    */
   constructor(opts) {
-    super('ysac', config, opts);
+    super('ysac', options, opts);
   }
 
   /**

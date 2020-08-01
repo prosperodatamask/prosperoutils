@@ -42,15 +42,17 @@ class Transformer {
   /**
    * The construtor
    * @param {String} name The transformer name
-   * @param {TransformerOption[]} config The configuration
+   * @param {Object[]} options The configuration
    * @param {Object} opts The configuration options
    * @returns {undefined}
    */
-  constructor(name, config, opts) {
+  constructor(name, options, opts) {
     this.#name = name;
     this.#config = {};
 
-    if (config !== undefined) {
+    if (options !== undefined) {
+      const config = buildConfig(options);
+
       config.forEach(value => {
         this.#config[value.name] = cloneDeep(value);
 
@@ -103,7 +105,29 @@ class Transformer {
   }
 }
 
+/**
+ * Builds the config
+ * @param {Object[]} options The options
+ * @return {TransformerOption[]} The configuration
+ */
+function buildConfig(options) {
+  const config = [];
+
+  options.forEach(option => {
+    config.push(new TransformerOption(
+      option.name,
+      option.display_name,
+      option.description,
+      option.type,
+      option.default
+    ));
+  });
+
+  return config;
+}
+
 module.exports = {
   Transformer: Transformer,
-  TransformerOption: TransformerOption
+  TransformerOption: TransformerOption,
+  buildConfig: buildConfig
 };

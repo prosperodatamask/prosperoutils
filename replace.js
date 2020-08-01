@@ -1,5 +1,4 @@
 const Transformer = require('./utils').Transformer;
-const TransformerOption = require('./utils').TransformerOption;
 
 const NAME = 'replace';
 const DISPLAY_NAME = 'Replacer';
@@ -22,18 +21,6 @@ const options = [
   }
 ];
 
-const config = [];
-
-options.forEach(option => {
-  config.push(new TransformerOption(
-    option.name,
-    option.display_name,
-    option.description,
-    option.type,
-    option.default
-  ));
-});
-
 /**
  * Replaces the entire length of the string with a fixed value
  */
@@ -43,7 +30,7 @@ class Replace extends Transformer {
    * @param {Object} opts The module options
    */
   constructor(opts) {
-    super(NAME, config, opts);
+    super(NAME, options, opts);
   }
 
   /**
