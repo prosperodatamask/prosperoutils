@@ -87,6 +87,34 @@ expect(instance_nomatch.transform('Input Text')).toEqual('REDACTED');
 expect(instance_match.transform('Input Text')).toEqual('REDACTEDRE');
 ```
 
+### Salesforce Id
+
+The `salesforceid` module takes Salesforce Ids and masks them in ways that would be useful by preserving key parts of the data but masking the information that makes the Id retrievable.
+
+#### Salesforce Id Options
+
+| Name | Type | Description | Default |
+|:----:|------|-------------|:-------:|
+| preserveobjectkey | boolean | Preserves the first three characters of the Id to help identify what object the Id is for | true |
+| mask | string | The text to mask the Id with | X |
+| masklength | number | The number of characters at the end of the Id to mask | 6 |
+| normalizelength | boolean | If the Id should be normalized to 18 characters | true |
+
+#### Salesforce Id Examples
+
+```javascript
+const instance_default = new require('prospero/salesforce/id').Transformer();
+const opts = {
+  mask: 'ACCOUNT',
+  masklength: 3,
+  normalizelength: false
+};
+const instance_opts = new require('prospero').salesforceid.Transformer(opts);
+
+expect(instance_default.transform('0018A00000Q9FuoQAF')).toEqual('0018A00000Q9XXXXXX');
+expect(instance_opts.transform('0018A00000Q9Fuo')).toEqual('0018A00000Q9ACC');
+```
+
 ## Adding new modules
 
 Create a new module file under the root that extends the `Transformer` class provided by the `utils` module.  Then pass in your module's name and it's configuration and options (if valid) to the super constructor.  The implement your `transform` method.  Each module must export the following properties

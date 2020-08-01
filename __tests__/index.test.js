@@ -18,7 +18,8 @@ describe('Modules', () => {
     const module_keys = difference(keys(prospero).sort(), expected_methods);
     const expected = [
       'copy',
-      'replace'
+      'replace',
+      'salesforceid'
     ];
 
     expect(module_keys).toEqual(expected);
@@ -36,7 +37,8 @@ describe('List Modules', () => {
     const module_keys = keys(prospero.listModules()).sort();
     const expected = [
       'copy',
-      'replace'
+      'replace',
+      'salesforceid'
     ];
 
     expect(module_keys).toEqual(expected);

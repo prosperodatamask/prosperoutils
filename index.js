@@ -5,12 +5,14 @@ const semver = require('semver');
 
 const copy = require('./copy');
 const replace = require('./replace');
+const salesforceid = require('./salesforce/id');
 
 const prosperoutils = require('./package.json');
 
 const module_list = [
   copy,
-  replace
+  replace,
+  salesforceid
 ];
 
 const modules = {};
