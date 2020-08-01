@@ -1,5 +1,7 @@
 const keys = require('lodash/keys');
 const difference = require('lodash/difference');
+const map = require('lodash/map');
+const uniq = require('lodash/uniq');
 
 const prospero = require('../index');
 const prospero_pkg = require('../package.json');
@@ -10,7 +12,8 @@ describe('Modules', () => {
     const expected_methods = [
       'dumpConfig',
       'listModules',
-      'loadConfig'
+      'loadConfig',
+      'module_list'
     ];
     const module_keys = difference(keys(prospero).sort(), expected_methods);
     const expected = [
@@ -19,6 +22,12 @@ describe('Modules', () => {
     ];
 
     expect(module_keys).toEqual(expected);
+  });
+
+  test('Unique Names', () => {
+    const module_names = map(prospero.module_list, 'name');
+
+    expect(module_names.length).toEqual(uniq(module_names).length);
   });
 });
 

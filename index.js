@@ -8,10 +8,15 @@ const replace = require('./replace');
 
 const prosperoutils = require('./package.json');
 
-const modules = {
-  [copy.name]: copy,
-  [replace.name]: replace
-};
+const module_list = [
+  copy,
+  replace
+];
+
+const modules = {};
+forEach(module_list, (value) => {
+  modules[value.name] = value;
+});
 
 /**
  * Returns a map of module name to description for easier listing
@@ -81,5 +86,6 @@ function loadConfig(config) {
 module.exports = merge({
   dumpConfig: dumpConfig,
   listModules: listModules,
-  loadConfig: loadConfig
+  loadConfig: loadConfig,
+  module_list: module_list
 }, modules);
