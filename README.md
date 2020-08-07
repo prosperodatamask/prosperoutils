@@ -138,7 +138,17 @@ const options = [
     display_name: 'Pepper Count',
     description: 'The number of peppers to return',
     type: 'number',
-    default: 3
+    default: 3,
+    /**
+     * Makes sure that you don't do too much pepper
+     * @returns {undefined}
+     * @throws {Error} If there's too much pepper
+     */
+    check: function () {
+      if (this.count.value > 3) {
+        throw new Error('Too much pepper');
+      }
+    }
   }
 ];
 
