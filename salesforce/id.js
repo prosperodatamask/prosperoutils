@@ -1,3 +1,5 @@
+const isEmpty = require('lodash/isEmpty');
+
 const Transformer = require('../utils').Transformer;
 
 const NAME = 'salesforceid';
@@ -20,7 +22,17 @@ const options = [
     display_name: 'Mask',
     description: 'The data to replace the Id with',
     type: 'string',
-    default: 'X'
+    default: 'X',
+    /**
+     * Checks to make sure the mask is set
+     * @returns {undefined}
+     * @throws {Error} If the mask is not set
+     */
+    check: function () {
+      if (isEmpty(this.value)) {
+        throw new Error('mask is empty');
+      }
+    }
   },
   {
     name: 'masklength',

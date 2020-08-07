@@ -59,6 +59,27 @@ describe('Transformer', () => {
 
       expect(config.replacement.value).toEqual('REPLACEMENT');
     });
+
+    describe('Check', () => {
+      describe('Replacement', () => {
+        test('Invalid', () => {
+          const instance = new replace.Transformer();
+          instance.config.replacement.value = '';
+
+          expect(() => {
+            instance.check();
+          }).toThrowError(new Error('replacement is empty'));
+        });
+        test('Invalid', () => {
+          const instance = new replace.Transformer();
+          instance.config.replacement.value = 'I AM VALID';
+
+          expect(() => {
+            instance.check();
+          }).not.toThrow();
+        });
+      });
+    });
   });
 
   describe('Transform', () => {

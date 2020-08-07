@@ -11,6 +11,7 @@ class TransformerOption {
   description;
   type;
   value;
+  check_fn;
 
   /**
    * The constructor
@@ -18,16 +19,30 @@ class TransformerOption {
    * @param {String} display_name The human readable name to display
    * @param {String} description A description for the option
    * @param {String} type The type of the option
+   * @param {Function} check The check function
    * @param {Object} default_value The default value
    */
-  constructor(name, display_name, description, type, default_value) {
+  constructor(name, display_name, description, type, check, default_value) {
     this.name = name;
     this.display_name = display_name;
     this.description = description;
     this.type = type;
+    this.check_fn = check;
 
     if (default_value) {
       this.value = default_value;
+    }
+  }
+
+  /**
+   * Checks to see if the option is valid
+   * @returns {undefined}
+   * @throws {Error} If the option is invalid
+   */
+  check() {
+    if (this.check_fn) {
+      const bound_check = this.check_fn.bind(this);
+      bound_check();
     }
   }
 }
@@ -97,6 +112,17 @@ class Transformer {
   }
 
   /**
+   * Checks all the configurations
+   * @returns {undefined}
+   * @throws {Error} If a configuration is invalid
+   */
+  check() {
+    forEach(this.#config, (option) => {
+      option.check();
+    });
+  }
+
+  /**
    * Transforms the data
    * @returns {String} The transformed data
    */
@@ -119,6 +145,7 @@ function buildConfig(options) {
       option.display_name,
       option.description,
       option.type,
+      option.check,
       option.default
     ));
   });

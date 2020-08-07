@@ -1,3 +1,5 @@
+const isEmpty = require('lodash/isEmpty');
+
 const Transformer = require('./utils').Transformer;
 
 const NAME = 'replace';
@@ -10,7 +12,17 @@ const options = [
     display_name: 'Replacement Text',
     description: 'The replacement text',
     type: 'string',
-    default: 'REDACTED'
+    default: 'REDACTED',
+    /**
+     * Checks to make sure the replacement is not empty
+     * @returns {undefined}
+     * @throws {Error} If the replacement text is empty
+     */
+    check: function () {
+      if (isEmpty(this.value)) {
+        throw new Error('replacement is empty');
+      }
+    }
   },
   {
     name: 'matchlength',

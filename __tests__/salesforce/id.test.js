@@ -64,6 +64,28 @@ describe('Transformer', () => {
     });
   });
 
+  describe('Check', () => {
+    describe('Mask', () => {
+      test('Valid', () => {
+        const instance = new salesforceid.Transformer();
+        instance.config.mask.value = 'I AM VALID';
+
+        expect(() => {
+          instance.check();
+        }).not.toThrow();
+      });
+
+      test('Invalid', () => {
+        const instance = new salesforceid.Transformer();
+        instance.config.mask.value = '';
+
+        expect(() => {
+          instance.check();
+        }).toThrowError(new Error('mask is empty'));
+      });
+    });
+  });
+
   describe('Transform', () => {
     describe('Default', () => {
       test('15 Characters', () => {
