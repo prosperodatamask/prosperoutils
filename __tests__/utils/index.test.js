@@ -1,5 +1,4 @@
 const utils = require('../../utils');
-const omit = require('lodash/omit');
 
 describe('Transform Option', () => {
   test('No Default', () => {
